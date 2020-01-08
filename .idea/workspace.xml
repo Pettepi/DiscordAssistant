@@ -60,13 +60,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="59" column="37" lean-forward="true" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
+            <state relative-caret-position="159">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1578271127165" expanded="true" signature="659:661" ph="..." />
-                <marker date="1578271127165" expanded="true" signature="705:1986" ph="..." />
-                <marker date="1578271127165" expanded="true" signature="912:1105" ph="..." />
+                <marker date="1578486559365" expanded="true" signature="1940:1986" ph="..." />
               </folding>
             </state>
           </provider>
@@ -84,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+            <state>
+              <caret column="73" selection-start-column="73" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -200,9 +198,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="733" y="24" width="696" height="781" extended-state="0" />
+    <frame x="0" y="26" width="731" height="835" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.20444444" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.1943662" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50133336" side_tool="true" weight="0.12544045" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -213,7 +211,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3280116" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.48048452" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -227,8 +225,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        <state>
+          <caret column="73" selection-start-column="73" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -241,13 +239,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="37" lean-forward="true" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
+        <state relative-caret-position="159">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1578271127165" expanded="true" signature="659:661" ph="..." />
-            <marker date="1578271127165" expanded="true" signature="705:1986" ph="..." />
-            <marker date="1578271127165" expanded="true" signature="912:1105" ph="..." />
+            <marker date="1578486559365" expanded="true" signature="1940:1986" ph="..." />
           </folding>
         </state>
       </provider>
