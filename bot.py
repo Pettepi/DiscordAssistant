@@ -3,6 +3,7 @@ import wolframalpha
 import discord
 import re
 import wikipedia
+import requests
 import asyncio
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -10,8 +11,10 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+WOLFRAM = os.getenv('WOLFRAMALPHA')
+RAPIDAPI = os.getenv('RAPIDAPI')
 
-wolfclient = wolframalpha.Client(app_id='X48LAH-RWEV576443')
+wolfclient = wolframalpha.Client(app_id=WOLFRAM)
 client = discord.Client()
 
 @client.event
@@ -49,18 +52,40 @@ async def on_message(message):
         await message.channel.send(res)
 
     if message.content.startswith('.wiki'):
-            trim = re.compile(r"@|.wiki")
-            trimmed_str = re.sub(trim, '', message.content)
-            res = wikipedia.summary(trimmed_str, sentences=5, auto_suggest=True)
-            await message.channel.send(res)
+        trim = re.compile(r"@|.wiki")
+        trimmed_str = re.sub(trim, '', message.content)
+        res = wikipedia.summary(trimmed_str, sentences=5, auto_suggest=True)
+        await message.channel.send(res)
 
     #implement audio playback WIP
     if message.content.startswith('.play'):
-            trim = re.compile(r"@|.play")
-            trimmed_str = re.sub(trim, '', message.content)
+        trim = re.compile(r"@|.play")
+        trimmed_str = re.sub(trim, '', message.content)
+
+    if message.content.startswith('.img'):
+        trim = re.compile(r"@|.img")
+        q = re.sub(trim, '', message.content)
+        pageNumber = 1
+        pageSize = 10
+        autoCorrect = True
+        safeSearch = False
+
+        response = requests.get(
+            "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q={}&amp;pageNumber={}&amp;pageSize={}&amp;autocorrect={}&amp;safeSearch={}".format(
+                q, pageNumber, pageSize, autoCorrect, safeSearch),
+            headers={
+                "X-RapidAPI-Key": RAPIDAPI,
+                "X-RapidApi-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
+            }
+            ).json()
+
+        for image in response["value"]:
+            imageUrl = image["url"]
+            await message.channel.send(imageUrl)
+
 
     if message.content.startswith('hello'):
-            await message.channel.send('Hello!')
+        await message.channel.send('Hello!')
 
 client.run(TOKEN)
 
