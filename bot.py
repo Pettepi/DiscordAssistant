@@ -15,6 +15,8 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 WOLFRAM = os.getenv('WOLFRAMALPHA')
 RAPIDAPI = os.getenv('RAPIDAPI')
+GOOGLEAPI = os.getenv('GOOGLEAPI')
+CX = os.getenv('CX')
 
 wolfclient = wolframalpha.Client(app_id=WOLFRAM)
 client = discord.Client()
@@ -66,24 +68,27 @@ async def on_message(message):
 
     if message.content.startswith('.img'):
         trim = re.compile(r"@|.img")
-        q = re.sub(trim, '', message.content)
-        pageNumber = 1
-        pageSize = 10
-        autoCorrect = True
-        safeSearch = False
+        trimmed_str = re.sub(trim, '', message.content)
+        q = trimmed_str
+        key = GOOGLEAPI
+        cx = CX
+        searchType = "image"
+        fileType = "jpg"
+        imgSize = "medium"
+        alt = "json"
 
+        #response = requests.get(
+            #"https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q={}&amp;pageNumber={}&amp;pageSize={}&amp;autocorrect={}&amp;safeSearch={}".format(
+               # q, pageNumber, pageSize, autoCorrect, safeSearch),
+           # ).json()
         response = requests.get(
-            "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q={}&amp;pageNumber={}&amp;pageSize={}&amp;autocorrect={}&amp;safeSearch={}".format(
-                q, pageNumber, pageSize, autoCorrect, safeSearch),
-            headers={
-                "X-RapidAPI-Key": RAPIDAPI,
-                "X-RapidApi-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
-            }
+            "https://www.googleapis.com/customsearch/v1?key={}&cx={}&q={}&searchType={}&fileType={}&imgSize={}&alt={}".format(
+                key, cx, q, searchType, fileType, imgSize, alt),
             ).json()
 
         print(response)
-        for image in response["value"]:
-            imageUrl = image["url"]
+        for item in response["items"]:
+            imageUrl = item["image"]["thumbnailLink"]
             async with aiohttp.ClientSession() as session:
                 async with session.get(imageUrl) as resp:
                     if resp.status != 200:
