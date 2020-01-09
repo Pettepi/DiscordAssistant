@@ -4,6 +4,8 @@ import discord
 import re
 import wikipedia
 import requests
+import io
+import aiohttp
 import asyncio
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -71,7 +73,7 @@ async def on_message(message):
         safeSearch = False
 
         response = requests.get(
-            "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI?q={}&amp;pageNumber={}&amp;pageSize={}&amp;autocorrect={}&amp;safeSearch={}".format(
+            "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q={}&amp;pageNumber={}&amp;pageSize={}&amp;autocorrect={}&amp;safeSearch={}".format(
                 q, pageNumber, pageSize, autoCorrect, safeSearch),
             headers={
                 "X-RapidAPI-Key": RAPIDAPI,
@@ -79,9 +81,16 @@ async def on_message(message):
             }
             ).json()
 
+        print(response)
         for image in response["value"]:
             imageUrl = image["url"]
-            await message.channel.send(imageUrl)
+            async with aiohttp.ClientSession() as session:
+                async with session.get(imageUrl) as resp:
+                    if resp.status != 200:
+                        return await message.channel.send('Couldnt download file')
+                    data = io.BytesIO(await resp.read())
+                    await message.channel.send(file=discord.File(data, 'image.png'))
+
 
 
     if message.content.startswith('hello'):
